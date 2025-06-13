@@ -1,7 +1,12 @@
 <template>
   <div class="h-screen w-full">
-    <NavBar v-if="name !== 'Login'"></NavBar>
-    <div class="fixed top-[60px] left-0 sm:pl-64 w-full">
+    <div v-if="name !== 'Login'">
+      <NavBar></NavBar>
+      <div class=" sm:pl-72 p-8 w-full">
+        <RouterView />
+      </div>
+    </div>
+    <div v-else>
       <RouterView />
     </div>
   </div>

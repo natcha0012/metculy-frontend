@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-0 left-0 sm:relative sm:w-64 w-30 z-10 h-screen px-8 py-4 bg-gray-800 text-white flex flex-col sm:translate-x-0"
+    class="absolute top-0 left-0 sm:top-[60px] sm:w-64 w-30 z-10 h-screen px-8 py-4 bg-gray-800 text-white flex flex-col sm:translate-x-0"
     :class="[modelValue ? 'translate-x-0' : '-translate-x-full']">
 
     <div class=" w-full sm:hidden flex justify-end">
@@ -9,7 +9,8 @@
     <router-link to="/appointment" class="block px-4 py-2 rounded hover:bg-gray-700" active-class="bg-gray-700">
       Appointment
     </router-link>
-    <router-link to="/user" class="block px-4 py-2 rounded hover:bg-gray-700" active-class="bg-gray-700">
+    <router-link to="/user" class="block px-4 py-2 rounded hover:bg-gray-700"
+      :class="route.path.startsWith('/user') ? 'bg-gray-700' : ''">
       User
     </router-link>
     <router-link to="/patient" class="block px-4 py-2 rounded hover:bg-gray-700" active-class="bg-gray-700">
@@ -18,6 +19,10 @@
   </div>
 </template>
 <script setup lang="ts">
+
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const props = defineProps<{
   modelValue: boolean

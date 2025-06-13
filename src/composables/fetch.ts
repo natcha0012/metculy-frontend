@@ -24,9 +24,6 @@ export async function useFetch<T, ReqBody = any>(
   try {
     const res = await fetch(`${import.meta.env.VITE_API_URL}${url}`, requestOptions)
     data.value = await res.json()
-    if (data.value?.errorCode === 401) {
-      auth.logout()
-    }
   } catch (err) {
     error.value = err as Error
   }
