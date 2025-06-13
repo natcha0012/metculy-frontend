@@ -6,14 +6,16 @@
     <div class=" w-full sm:hidden flex justify-end">
       <button class="text-3xl cursor-pointer" @click="toggleSideBar">&#9776;</button>
     </div>
-    <router-link to="/appointment" class="block px-4 py-2 rounded hover:bg-gray-700" active-class="bg-gray-700">
+    <router-link to="/appointment" class="block px-4 py-2 rounded hover:bg-gray-700"
+      :class="route.path.startsWith('/appointment') ? 'bg-gray-700' : ''">
       Appointment
     </router-link>
     <router-link to="/user" class="block px-4 py-2 rounded hover:bg-gray-700"
       :class="route.path.startsWith('/user') ? 'bg-gray-700' : ''">
       User
     </router-link>
-    <router-link to="/patient" class="block px-4 py-2 rounded hover:bg-gray-700" active-class="bg-gray-700">
+    <router-link to="/patient" class="block px-4 py-2 rounded hover:bg-gray-700"
+      :class="route.path.startsWith('/patient') ? 'bg-gray-700' : ''">
       Patient
     </router-link>
   </div>

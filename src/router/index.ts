@@ -24,6 +24,22 @@ const router = createRouter({
       component: () => import('../views/User/UserUpdateView.vue'),
     },
     {
+      path: '/patient',
+      name: 'Patient',
+      component: () => import('../views/Patient/PatientView.vue'),
+    },
+
+    {
+      path: '/patient/create',
+      name: 'PserCreate',
+      component: () => import('../views/Patient/PatientCreateUpdateView.vue'),
+    },
+    {
+      path: '/patient/:id',
+      name: 'PserUpdate',
+      component: () => import('../views/Patient/PatientCreateUpdateView.vue'),
+    },
+    {
       path: '/:chapters*',
       redirect: { name: 'user' },
     },
