@@ -14,7 +14,7 @@
     </div>
 
     <div
-      className="order-1 md:order-2 w-full md:w-[630px] bg-[#1f573d] p-8 rounded-b-2xl md:rounded-r-none md:rounded-l-2xl  flex flex-col items-center justify-center">
+      className="order-1 md:order-2 w-full md:w-[630px] primary-bg p-8 rounded-b-2xl md:rounded-r-none md:rounded-l-2xl  flex flex-col items-center justify-center">
       <img src="/logo.svg" alt="Board Logo" className=" mb-4" width="300" height="230" priority />
       <p className="text-white italic">METCULY</p>
     </div>
