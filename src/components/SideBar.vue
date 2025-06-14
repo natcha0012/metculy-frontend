@@ -19,9 +19,16 @@
       Patient
     </router-link>
   </div>
+  <div class="absolute bottom-4 left-8 z-20">
+    <button @click="logout"
+      class="px-3 py-1 border border-white text-white rounded hover:bg-white hover:text-black transition">
+      Logout
+    </button>
+  </div>
 </template>
 <script setup lang="ts">
 
+import { useAuthStore } from '@/stores/auth-store';
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -30,6 +37,8 @@ const props = defineProps<{
   modelValue: boolean
 }>()
 const emit = defineEmits(['update:modelValue'])
+
+const { logout } = useAuthStore()
 
 const toggleSideBar = () => {
   emit("update:modelValue", !props.modelValue)

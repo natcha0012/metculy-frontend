@@ -10,7 +10,8 @@
         <label class="block sm:w-[150px] text-sm font-medium mb-1">
           First Name<span class="text-red-500">*</span>
         </label>
-        <input v-model="form.firstName" type="text" class="w-full px-3 py-2 border rounded" required />
+        <div v-if="user?.role === UserRole.STAFF">{{ form.firstName }}</div>
+        <input v-else v-model="form.firstName" type="text" class="w-full px-3 py-2 border rounded" required />
       </div>
 
       <!-- Last Name -->
@@ -18,7 +19,8 @@
         <label class="block sm:w-[150px] text-sm font-medium mb-1">
           Last Name<span class="text-red-500">*</span>
         </label>
-        <input v-model="form.lastName" type="text" class="w-full px-3 py-2 border rounded" required />
+        <div v-if="user?.role === UserRole.STAFF">{{ form.lastName }}</div>
+        <input v-else v-model="form.lastName" type="text" class="w-full px-3 py-2 border rounded" required />
       </div>
 
       <!-- National ID -->
@@ -26,7 +28,9 @@
         <label class="block sm:w-[150px] text-sm font-medium mb-1">
           National ID<span class="text-red-500">*</span>
         </label>
-        <input v-model="form.nationalId" :maxlength="13" type="text" class="w-full px-3 py-2 border rounded" required />
+        <div v-if="user?.role === UserRole.STAFF">{{ form.nationalId }}</div>
+        <input v-else v-model="form.nationalId" :maxlength="13" type="text" class="w-full px-3 py-2 border rounded"
+          required />
       </div>
 
       <!-- Phone Number -->
@@ -34,11 +38,12 @@
         <label class="block sm:w-[150px] text-sm font-medium mb-1">
           Phone Number<span class="text-red-500">*</span>
         </label>
-        <input v-model="phoneNumber" type="text" class="w-full px-3 py-2 border rounded" required />
+        <div v-if="user?.role === UserRole.STAFF">{{ phoneNumber }}</div>
+        <input v-else v-model="phoneNumber" type="text" class="w-full px-3 py-2 border rounded" required />
       </div>
 
       <!-- Submit -->
-      <div class="flex justify-end gap-2 pt-4">
+      <div v-if="user?.role !== UserRole.STAFF" class="flex justify-end gap-2 pt-4">
         <button type="button" class="px-4 py-2 border shadow rounded hover:bg-gray-200" @click="cancel">
           Cancel
         </button>
@@ -59,9 +64,12 @@ import { useFetch } from '@/composables/fetch'
 import type { PatientResponse } from '@/types/patient'
 import { formatPhoneNumber } from '@/directives/phoneNumber'
 import AppointmentCard from './components/AppointmentCard.vue'
+import { useAuthStore } from '@/stores/auth-store'
+import { UserRole } from '@/enums/user.enum'
 
 const router = useRouter()
 const route = useRoute()
+const { user } = useAuthStore()
 const patientId = Number(route.params.id)
 
 const form = ref({
