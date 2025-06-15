@@ -158,6 +158,7 @@ const deleteAppointment = async (id: number) => {
   }
 
   appointmentList.value = appointmentList.value.filter((appointment) => appointment.id !== id) as AppointmentResponse[]
+  treatmentCount.value--;
 }
 
 watch(phoneNumber, (newVal) => {

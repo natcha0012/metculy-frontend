@@ -1,6 +1,6 @@
 <template>
   <div class="border rounded-lg p-4 shadow bg-white space-y-3">
-    <div class="flex justify-end gap-4">
+    <div v-if="user?.role !== UserRole.STAFF" class="flex justify-end gap-4">
       <button @click="edit">
         <img src="../../../assets/pencil.svg" height="20" width="20">
       </button>
@@ -48,6 +48,8 @@
 
 <script setup lang="ts">
 import { useFetch } from '@/composables/fetch';
+import { UserRole } from '@/enums/user.enum';
+import { useAuthStore } from '@/stores/auth-store';
 import type { AppointmentResponse } from '@/types/appointment';
 import { ref, } from 'vue'
 
@@ -59,6 +61,8 @@ const props = defineProps<{
 const emit = defineEmits<{
   delete: []
 }>()
+
+const { user } = useAuthStore();
 
 const isEdit = ref(false);
 
