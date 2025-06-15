@@ -4,5 +4,6 @@ export type PatientResponse = {
   lastName: string
   nationalId: string
   phoneNumber: string
+  detail?: string
   treatmentCount?: number
 }

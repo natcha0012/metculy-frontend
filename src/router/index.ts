@@ -31,17 +31,32 @@ const router = createRouter({
 
     {
       path: '/patient/create',
-      name: 'PserCreate',
+      name: 'PatientCreate',
       component: () => import('../views/Patient/PatientCreateUpdateView.vue'),
     },
     {
       path: '/patient/:id',
-      name: 'PserUpdate',
+      name: 'PatientUpdate',
       component: () => import('../views/Patient/PatientCreateUpdateView.vue'),
     },
     {
+      path: '/appointment',
+      name: 'Appointment',
+      component: () => import('../views/Appointment/AppointmentView.vue'),
+    },
+    {
+      path: '/appointment/create',
+      name: 'AppointmentCreate',
+      component: () => import('../views/Appointment/AppointmentCreateUpdateView.vue'),
+    },
+    {
+      path: '/appointment/:id',
+      name: 'AppointmentUpdate',
+      component: () => import('../views/Appointment/AppointmentCreateUpdateView.vue'),
+    },
+    {
       path: '/:chapters*',
-      redirect: { name: 'user' },
+      redirect: { name: 'Appointment' },
     },
   ],
 })
